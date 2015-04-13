@@ -3,9 +3,10 @@
 
 #include <iostream>
 #include <fstream>
-
-//I'm not writing my own list support
 #include <vector>
+
+//Used for performance benchmarking
+#include <time.h>
 
 #include "knapsack.h"
 
@@ -26,7 +27,7 @@ public:
 	~KnapsackTester();
 	
 	// Runs the tests and outputs the results to a file
-	void runTests();
+	void runAutomatedTests();
 
 	//Runs the given input through a greedy and dynamic approach to solving the
 	//knapsack problem. 
@@ -47,7 +48,8 @@ private:
 
 };
 
-
+//Outputs the combined test result in human readable format
+ostream& operator << (ostream& out, const combinedTestResult& in);
 
 #endif
 
