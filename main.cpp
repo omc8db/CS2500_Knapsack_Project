@@ -8,7 +8,7 @@ using namespace std;
 
 int main()
 {
-	KnapsackTester tester("results.csv");
+	KnapsackTester tester("results.txt");
 	tester.runTests();
 	return 0;
 }
