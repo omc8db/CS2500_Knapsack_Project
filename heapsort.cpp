@@ -1,14 +1,15 @@
 #include "heapsort.h"
 #include <iostream>
+#include <vector>
+using namespace std;
 
 
-void HeapSort::heapsort(int* array, int size)
+template <typename T>
+void HeapSort<T>::heapsort(vector<T>& array, int size)
 {
-	int temp;
+	int i;
+	T temp;
 	buildheap(array, size);
-	//Precondition:array(size+1...i) is in a heap
-	//Invariant:array(0...size) is in a heap and array(size...i) is sorted
-	//Assert(testSorted(array, end+1, count))
 	for(int i=size; i>1; i--)
 	{
 		temp=array[i];
@@ -16,13 +17,11 @@ void HeapSort::heapsort(int* array, int size)
 		array[1]=temp;
 		heapify(array, 1, i-1);
 	}
-	//Invariant:array(0...size) is in a heap
-	//Assert(testSorted(array, size, i))
-	//Postcondition:array(1...i) is sorted
 	return;
 }
 
-void HeapSort::buildheap(int* array, int size)
+template <typename T>
+void HeapSort<T>::buildheap(vector<T>& array, int size)
 {
 	for(int i=size/2; i>=1; i--)
 	{
@@ -31,9 +30,11 @@ void HeapSort::buildheap(int* array, int size)
 	return;
 }
 
-void HeapSort::heapify(int* array, int i, int size)
+template <typename T>
+void HeapSort<T>::heapify(vector<T>& array, int i, int size)
 {
-	int j, temp;
+	int j;
+	T temp;
 	temp=array[i];
 	j=2*i;
 	while(j<=size)
@@ -46,13 +47,14 @@ void HeapSort::heapify(int* array, int i, int size)
 		{
 			break;
 		}
-		else if(temp<=array[j])
+		else if (temp<=array[j])
 		{
 			array[j/2]=array[j];
 			j=j*2;
 		}
 	}
 	array[j/2]=temp;
+
 	return;
 }
 
