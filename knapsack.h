@@ -2,7 +2,8 @@
 #define KNAPSACK_H
 
 #include "heapsort.h"
-#include <vector>
+#include <vector>    //std::vector
+#include <algorithm> //std::max
 
 using namespace std;
 
@@ -24,6 +25,6 @@ struct knapsackResult
 // post: 
 knapsackResult greedyKnapsackSolve(const vector<knapsackItem>& input, int capcity);
 
-knapsackResult dynamicKnapsackSolve(const vector<knapsackItem>& input, int capcity);
+knapsackResult dynamicKnapsackSolve(const vector<knapsackItem>& input, int capacity);
 
 #endif
