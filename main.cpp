@@ -47,6 +47,8 @@ int main()
 			case 2: //Custom Test
 				cout << "Enter number of items: " << endl;
 				cin >> customItemsCount;
+				customList.clear();
+				
 				for(int i = 0; i < customItemsCount; i++)
 				{
 					cout << i << ": Enter Weight " << endl;
@@ -62,7 +64,7 @@ int main()
 				cout << "Test result: \n";
 				cout << customResult;
 
-				
+								
 				break;
 
 			case 3: //Exit

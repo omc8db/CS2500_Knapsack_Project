@@ -43,7 +43,13 @@ combinedTestResult KnapsackTester::test(const vector<knapsackItem>& input, int c
 
 ostream& operator << (ostream& out, const combinedTestResult& in)
 {
-	out << "Not yet implemented" << endl;
+	out << "Dynamic Solution: value = " << in.dynamicResult.totalValue << endl;
+	out << "Uses items: " << endl;
+	for(int i = 0; i < in.dynamicResult.solution_set.size(); i++)
+	{
+		cout << "{w" << in.dynamicResult.solution_set[i].weight << ", v"
+		     << in.dynamicResult.solution_set[i].value << "}" << endl;
+	}
 
 	return out;
 }

@@ -4,6 +4,7 @@
 #include "heapsort.h"
 #include <vector>    //std::vector
 #include <algorithm> //std::max
+#include <iostream>
 
 using namespace std;
 

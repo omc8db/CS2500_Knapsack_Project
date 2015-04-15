@@ -28,23 +28,49 @@ knapsackResult dynamicKnapsackSolve(const vector<knapsackItem>& input, int capac
 		table[0][j] = 0;
 	}
 
+
 	//Fill out the table
 	for(int i = 1; i <= input.size(); i++)
 	{
 		for(int j = 1; j <= capacity; j++)
 		{
-			if(j < input[i].weight)
+			if(j < input[i-1].weight)
 			{
 				table[i][j] = table[i-1][j];
 			} else 
 			{
 				table[i][j] = max(
-					  (table[i-1][j-input[i].weight] + table[i][j-1])
+					  (table[i-1][j-input[i-1].weight] + input[i-1].value)
 					, table[i-1][j]
 					);
+
 			}
 
 		}
+	}
+
+	//Calculate results
+	result.totalValue = table[input.size()][capacity];
+
+	int current_item = input.size(); //Start at last entry in table
+	int current_weight = capacity;
+	while(current_weight > 0)
+	{
+		//Find when this item was added
+		while(table[current_item][current_weight] == table[current_item-1][current_weight])
+		{
+			current_item --;
+		}
+		while(table[current_item][current_weight] == table[current_item][current_weight-1])
+		{
+			current_weight--;
+		}
+
+		//Subtract 1 from the current item because vectors start at 0
+		result.solution_set.push_back(input[current_item-1]); 
+
+		current_weight = current_weight - input[current_item-1].weight;
+		current_item --;
 	}
 
 	//Deallocate table
