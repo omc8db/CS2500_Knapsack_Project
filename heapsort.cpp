@@ -1,10 +1,11 @@
 #include "heapsort.h"
 #include <iostream>
 #include <vector>
+using namespace std;
 
 
 template <typename T>
-void HeapSort<T>::heapsort(std::vector<T>& array, int size)
+void HeapSort<T>::heapsort(vector<T>& array, int size)
 {
 	int i;
 	T temp;
@@ -20,7 +21,7 @@ void HeapSort<T>::heapsort(std::vector<T>& array, int size)
 }
 
 template <typename T>
-void HeapSort<T>::buildheap(std::vector<T>& array, int size)
+void HeapSort<T>::buildheap(vector<T>& array, int size)
 {
 	for(int i=size/2; i>=1; i--)
 	{
@@ -30,7 +31,7 @@ void HeapSort<T>::buildheap(std::vector<T>& array, int size)
 }
 
 template <typename T>
-void HeapSort<T>::heapify(std::vector<T>& array, int i, int size)
+void HeapSort<T>::heapify(vector<T>& array, int i, int size)
 {
 	int j;
 	T temp;
