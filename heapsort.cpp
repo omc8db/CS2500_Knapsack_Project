@@ -4,6 +4,15 @@
 #include "knapsack.h"
 using namespace std;
 
+void outputListOfKnapsackItems(knapsackItem* list, int size)
+{
+	for(int i = 0; i < size; i++)
+	{
+		cout << "{W: " << list[i].weight << ", V:" << list[i].value << "} ";
+	}
+	cout << endl;
+}
+
 
 void HeapSort::heapsort(knapsackItem* array, int size)
 {

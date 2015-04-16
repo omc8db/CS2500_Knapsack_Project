@@ -35,4 +35,6 @@ private:
 };
 
 
+void outputListOfKnapsackItems(knapsackItem* list, int size);
+
 #endif

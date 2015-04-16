@@ -3,8 +3,11 @@
 knapsackResult greedyKnapsackSolve(const vector<knapsackItem>& input, int capacity)
 {
 	knapsackResult result;
+
+	result.totalValue = 0;
+	result.solution_set.clear();
 	
-	int numValues = input.size();
+	int current_weight = 0;
 
 	//create a copy of the input as an array (heapsort won't operate on vectors)
 	knapsackItem* q = new knapsackItem[input.size()];
@@ -13,14 +16,37 @@ knapsackResult greedyKnapsackSolve(const vector<knapsackItem>& input, int capaci
 		q[i] = input[i];
 	}
 
+
+	cout << "Unsorted: ";
+	outputListOfKnapsackItems(q, input.size());
+	cout << endl;
+
+	//Greedy criteria
 	HeapSort heapsorter;
 	heapsorter.heapsort(q, input.size());
 
-	int k = capacity;
-	for(int i = 0; i < numValues; i++){
-		
-	}
+	cout << "Sorted: ";
+	outputListOfKnapsackItems(q, input.size());
+	cout << endl;
 	
+
+	//Calculate results
+	for(int i = 0; i < input.size(); i++)
+	{
+		if(current_weight + q[i].weight <= capacity)
+		{
+			result.solution_set.push_back(q[i]);
+			current_weight = current_weight - q[i].weight;
+		}
+
+	}
+
+	//Calculate total value
+	for(int i = 0; i < result.solution_set.size(); i++)
+	{
+		result.totalValue = result.totalValue + result.solution_set[i].value;
+	}
+
 	delete[] q;
 	return result;
 }
