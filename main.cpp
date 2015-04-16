@@ -17,7 +17,9 @@ int main()
 	vector<knapsackItem> customList;
 
 
-	KnapsackTester tester("results.txt");
+	KnapsackTester tester("results.csv");
+
+	srand(time(NULL));
 
 	cout << "Knapsack Problem Tester" << endl;
 
@@ -34,13 +36,7 @@ int main()
 		switch(choice)
 		{
 			case 1: //Automated Test
-				cout << "Smallest number of items" << endl;
-				cout << "Largest number of items" << endl;
-				cout << "Item step" << endl;
-				cout << "Smallest capacity" << endl;
-				cout << "Largest Capacity" << endl;
-				cout << "Capacity Step" << endl;
-				cout << "Starting tests. Results will be output to console and results.txt" << endl;
+				cout << "Starting tests. Results will be output to console and results.csv" << endl;
 
 				break;
 

@@ -17,7 +17,7 @@ void heapSort(knapsackItem* array, int size)
 		//Ensure the heap property is followed
 		heapPropertyAdjust(array, 0, size-1);
 
-		//Shrink the remaining maxtree
+		//Shrink the remaining mintree
 		size --;
 	}
 	//Postcondition: Array is sorted
@@ -42,7 +42,7 @@ void heapPropertyAdjust(knapsackItem* array, int index, int size)
 		int child_B = child_A + 1;
 		int smaller_child;
 
-		//Select the biggest child
+		//Select the smallest child
 		if((child_B < size) && array[child_B] < array[child_A])
 		{
 			smaller_child = child_B;
