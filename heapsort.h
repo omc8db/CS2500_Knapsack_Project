@@ -18,6 +18,7 @@ void heapSort(knapsackItem* array, int size);
 
 void heapify(knapsackItem* array, int size);
 
+//Ensures that the heap is a minheap
 void heapPropertyAdjust(knapsackItem* array, int index, int size);
 
 //In place swap

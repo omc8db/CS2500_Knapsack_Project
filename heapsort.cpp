@@ -40,22 +40,22 @@ void heapPropertyAdjust(knapsackItem* array, int index, int size)
 		//Get the locations of the children
 		int child_A = 2 * index + 1;
 		int child_B = child_A + 1;
-		int bigger_child;
+		int smaller_child;
 
 		//Select the biggest child
-		if((child_B < size) && array[child_B] > array[child_A])
+		if((child_B < size) && array[child_B] < array[child_A])
 		{
-			bigger_child = child_B;
+			smaller_child = child_B;
 		} else
 		{
-			bigger_child = child_A;
+			smaller_child = child_A;
 		}
 
 		// Check if the heap is out of order
-		if(array[index] < array[bigger_child])
+		if(array[index] > array[smaller_child])
 		{
-			swap(array[index], array[bigger_child]);
-			index = bigger_child;
+			swap(array[index], array[smaller_child]);
+			index = smaller_child;
 		} else
 		{
 			return;
