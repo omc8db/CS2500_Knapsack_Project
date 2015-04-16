@@ -1,11 +1,12 @@
 #ifndef KNAPSACK_H
 #define KNAPSACK_H
 
-#include "heapsort.h"
+
 #include "knapsack_types.h"
 #include <vector>    //std::vector
 #include <algorithm> //std::max
 #include <iostream>
+#include "heapsort.h"
 
 using namespace std;
 

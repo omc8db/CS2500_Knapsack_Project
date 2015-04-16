@@ -11,23 +11,16 @@
 #ifndef HEAPSORT_H
 #define HEAPSORT_H
 #include <assert.h>
+#include "knapsack_types.cpp"
 
 
-template <typename T>
-void heapSort(T* array, int size);
+void heapSort(knapsackItem* array, int size);
 
-template <typename T>
-void buildheap(T* array, int size);
+void heapify(knapsackItem* array, int size);
 
-template <typename T>
-void heapify(T* array, int size);
-
-
-template <typename T>
-void heapPropertyAdjust(T* array, int index, int size);
+void heapPropertyAdjust(knapsackItem* array, int index, int size);
 
 //In place swap
-template <typename T>
-void swap(T* left, T* right);
+void swap(knapsackItem* left, knapsackItem* right);
 
 #endif

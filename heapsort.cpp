@@ -3,8 +3,7 @@
 #include <vector>
 using namespace std;
 
-template <typename T>
-void heapSort(T* array, int size)
+void heapSort(knapsackItem* array, int size)
 {
 	
 	heapify(array, size);
@@ -25,14 +24,7 @@ void heapSort(T* array, int size)
 	return;
 }
 
-template <typename T>
-void buildheap(T* array, int size)
-{
-	return;
-}
-
-template <typename T>
-void heapify(T* array, int size)
+void heapify(knapsackItem* array, int size)
 {
 	for(int i = size/2; i>= 0; i--)
 	{
@@ -41,8 +33,7 @@ void heapify(T* array, int size)
 	return;
 }
 
-template <typename T>
-void heapPropertyAdjust(T* array, int index, int size)
+void heapPropertyAdjust(knapsackItem* array, int index, int size)
 {
 	while( (index * 2 + 1) < size )
 	{
@@ -74,12 +65,16 @@ void heapPropertyAdjust(T* array, int index, int size)
 	return;
 }
 
-template <typename T>
-void swap(T* left, T* right)
+void swap(knapsackItem* left, knapsackItem* right)
 {
-	T tmp;
-	tmp  = *right;
-	*right = *left;
-	*left = *tmp;
+	knapsackItem tmp;
+	tmp.value  = right->value;
+	tmp.weight = right->weight;
+
+	right->value = left->value;
+	right->weight = left->weight;
+
+	left->value = tmp.value;
+	left->weight = tmp.weight;
 	return;
 }
