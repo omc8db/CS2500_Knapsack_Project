@@ -83,7 +83,7 @@ void KnapsackTester::runAutomatedTests()
 			              << test_input
 			              << endl;
 			cout << "Capacity = " << capacity << ", input size = " << input_size
-			      << ", type = random" << endl << test_result;
+			      << ", type = inverse" << endl << test_result;
 		}
 	}
 
@@ -117,7 +117,6 @@ combinedTestResult KnapsackTester::test(const vector<knapsackItem>& input, int c
 
 vector<knapsackItem> KnapsackTester::generateRandom(int size, int max_val)
 {
-	cout << "Generating Random list" << endl;
 	vector<knapsackItem> result;
 	//Allocate enough space for the vector
 	result.reserve(size);
