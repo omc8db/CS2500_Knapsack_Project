@@ -5,20 +5,23 @@ knapsackResult greedyKnapsackSolve(const vector<knapsackItem>& input, int capaci
 	knapsackResult result;
 	
 	int numValues = input.size();
-	//create a copy of the input
-	vector<knapsackItem> q = input;
-	//sorting the input copy in place by value/weight
-	HeapSort<vector<knapsackItem> > heapsorter;
-	heapsorter.heapsort(q, q.size());
-	
-	
-	
+
+	//create a copy of the input as an array (heapsort won't operate on vectors)
+	knapsackItem* q = new knapsackItem[input.size()];
+	for(int i = 0; i < input.size(); i++)
+	{
+		q[i] = input[i];
+	}
+
+	HeapSort heapsorter;
+	heapsorter.heapsort(q, input.size());
 
 	int k = capacity;
 	for(int i = 0; i < numValues; i++){
 		
 	}
 	
+	delete[] q;
 	return result;
 }
 
@@ -116,5 +119,10 @@ bool operator<(knapsackItem lhs, knapsackItem rhs)
 	else{
 		return false;
 	}
+}
+
+bool operator<=(knapsackItem lhs, knapsackItem rhs)
+{
+	return !(lhs>rhs);
 }
 

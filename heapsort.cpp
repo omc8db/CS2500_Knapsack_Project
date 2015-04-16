@@ -1,14 +1,14 @@
 #include "heapsort.h"
 #include <iostream>
 #include <vector>
+#include "knapsack.h"
 using namespace std;
 
 
-template <typename T>
-void HeapSort<T>::heapsort(vector<T>& array, int size)
+void HeapSort::heapsort(knapsackItem* array, int size)
 {
 	int i;
-	T temp;
+	knapsackItem temp;
 	buildheap(array, size);
 	for(int i=size; i>1; i--)
 	{
@@ -20,8 +20,7 @@ void HeapSort<T>::heapsort(vector<T>& array, int size)
 	return;
 }
 
-template <typename T>
-void HeapSort<T>::buildheap(vector<T>& array, int size)
+void HeapSort::buildheap(knapsackItem* array, int size)
 {
 	for(int i=size/2; i>=1; i--)
 	{
@@ -30,11 +29,10 @@ void HeapSort<T>::buildheap(vector<T>& array, int size)
 	return;
 }
 
-template <typename T>
-void HeapSort<T>::heapify(vector<T>& array, int i, int size)
+void HeapSort::heapify(knapsackItem* array, int i, int size)
 {
 	int j;
-	T temp;
+	knapsackItem temp;
 	temp=array[i];
 	j=2*i;
 	while(j<=size)
