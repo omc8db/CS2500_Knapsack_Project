@@ -3,58 +3,83 @@
 #include <vector>
 using namespace std;
 
+template <typename T>
+void heapSort(T* array, int size)
+{
+	
+	heapify(array, size);
+
+	while((size - 1) > 0)
+	{
+		//Put the next largest element in the solution
+		swap(array[size-1], array[0]);
+		//Solution is array[size .. originial size]
+
+		//Ensure the heap property is followed
+		heapPropertyAdjust(array, 0, size-1);
+
+		//Shrink the remaining maxtree
+		size --;
+	}
+	//Postcondition: Array is sorted
+	return;
+}
 
 template <typename T>
-void HeapSort<T>::heapsort(vector<T>& array, int size)
+void buildheap(T* array, int size)
 {
-	int i;
-	T temp;
-	buildheap(array, size);
-	for(int i=size; i>1; i--)
+	return;
+}
+
+template <typename T>
+void heapify(T* array, int size)
+{
+	for(int i = size/2; i>= 0; i--)
 	{
-		temp=array[i];
-		array[i]=array[1];
-		array[1]=temp;
-		heapify(array, 1, i-1);
+		heapPropertyAdjust(array, i, size);
 	}
 	return;
 }
 
 template <typename T>
-void HeapSort<T>::buildheap(vector<T>& array, int size)
+void heapPropertyAdjust(T* array, int index, int size)
 {
-	for(int i=size/2; i>=1; i--)
+	while( (index * 2 + 1) < size )
 	{
-		heapify(array,i,size);
+		//Get the locations of the children
+		int child_A = 2 * index + 1;
+		int child_B = child_A + 1;
+		int bigger_child;
+
+		//Select the biggest child
+		if((child_B < size) && array[child_B] > array[child_A])
+		{
+			bigger_child = child_B;
+		} else
+		{
+			bigger_child = child_A;
+		}
+
+		// Check if the heap is out of order
+		if(array[index] < array[bigger_child])
+		{
+			swap(array[index], array[bigger_child]);
+			index = bigger_child;
+		} else
+		{
+			return;
+		}
 	}
+
 	return;
 }
 
 template <typename T>
-void HeapSort<T>::heapify(vector<T>& array, int i, int size)
+void swap(T* left, T* right)
 {
-	int j;
-	T temp;
-	temp=array[i];
-	j=2*i;
-	while(j<=size)
-	{
-		if(j<size && array[j+1]>array[j])
-		{
-			j++;
-		}
-		if (temp>array[j])
-		{
-			break;
-		}
-		else if (temp<=array[j])
-		{
-			array[j/2]=array[j];
-			j=j*2;
-		}
-	}
-	array[j/2]=temp;
-
+	T tmp;
+	tmp  = *right;
+	*right = *left;
+	*left = *tmp;
 	return;
 }
-

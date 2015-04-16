@@ -1,9 +1,64 @@
 #include "knapsack.h"
 
-knapsackResult greedyKnapsackSolve(const vector<knapsackItem>& input, int capcity)
+void outputListOfKnapsackItems(knapsackItem* list, int size)
+{
+	for(int i = 0; i < size; i++)
+	{
+		cout << "{W: " << list[i].weight << ", V:" << list[i].value << "} ";
+	}
+	cout << endl;
+}
+
+
+knapsackResult greedyKnapsackSolve(const vector<knapsackItem>& input, int capacity)
 {
 	knapsackResult result;
+
+	result.totalValue = 0;
+	result.solution_set.clear();
 	
+	int current_weight = 0;
+
+	//create a copy of the input so that we can modify it
+	knapsackItem* q = new knapsackItem[input.size()];
+	for(int i = 0; i < input.size(); i++)
+	{
+		q[i] = input[i];
+	}
+
+
+	cout << "Unsorted: ";
+	outputListOfKnapsackItems(q, input.size());
+	cout << endl;
+
+	//Greedy Sort criteria
+	heapSort(q, input.size());
+
+	cout << "Sorted: ";
+	outputListOfKnapsackItems(q, input.size());
+	cout << endl;
+	
+
+	//Calculate results
+	for(int i = 0; i < input.size(); i++)
+	{
+		if(current_weight + q[i].weight <= capacity)
+		{
+			result.solution_set.push_back(q[i]);
+			current_weight = current_weight - q[i].weight;
+		}
+
+	}
+
+	//Calculate total value
+	for(int i = 0; i < result.solution_set.size(); i++)
+	{
+		result.totalValue = result.totalValue + result.solution_set[i].value;
+	}
+
+	delete[] q;
+	return result;
+
 	return result;
 }
 
