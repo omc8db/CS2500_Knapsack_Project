@@ -184,11 +184,11 @@ ostream& operator << (ostream& out, const combinedTestResult& in)
 {
 	out << "Dynamic Solution: value = " << in.dynamicResult.totalValue
 	    << ", time = " << in.dynamicTime <<  endl;
-//	out << "Uses items: " << in.dynamicResult.solution_set << endl << endl;
+	out << "Uses items: " << in.dynamicResult.solution_set << endl << endl;
 
 	out << "greedy Solution: value = " << in.greedyResult.totalValue
 	    << ", time = " << in.greedyTime <<  endl;
-//	out << "Uses items: " << in.greedyResult.solution_set << endl;
+	out << "Uses items: " << in.greedyResult.solution_set << endl;
 	out << endl << endl;
 	return out;
 }
