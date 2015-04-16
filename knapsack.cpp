@@ -68,7 +68,6 @@ knapsackResult dynamicKnapsackSolve(const vector<knapsackItem>& input, int capac
 {
 	knapsackResult result;
 	
-	cout << "Dynamic:: Allocating table" << endl;
 	//Allocate table
 	int **table = new int*[input.size()+1]; // add an extra row for 0s
 	for(int i = 0; i < input.size()+1; i++)
@@ -85,8 +84,6 @@ knapsackResult dynamicKnapsackSolve(const vector<knapsackItem>& input, int capac
 	{
 		table[0][j] = 0;
 	}
-
-	cout << "Dynamic:: Table created" << endl;
 
 	//Fill out the table
 	for(int i = 1; i <= input.size(); i++)

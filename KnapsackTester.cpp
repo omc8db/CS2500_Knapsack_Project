@@ -19,19 +19,18 @@ void KnapsackTester::runAutomatedTests()
 	vector<knapsackItem> test_input;
 	combinedTestResult test_result;
 
-	m_output_file << "Capacity, Input size, input type, dynamic time, greedy time, dynamic value, greedy value, dynamic list, greedy list" << endl;
+	m_output_file << "Capacity, Input size, input type, dynamic time, greedy time, dynamic value, greedy value, dynamic list, greedy list, full input" << endl;
 
 	for(capacity = MIN_CAPACITY; capacity <= MAX_CAPACITY; capacity*=2)
 	{
 		cout << "Testing capacity " << capacity << "\n================" << endl;
 
-		for(input_size = 3; input_size < MAX_INPUT_SIZE; input_size+= TEST_INPUT_SIZE_STEP)
+		for(input_size = 2; input_size <= MAX_CAPACITY; input_size*=2)
 		{
 
 			// Direct test (easy)
 			// Inputs have values corresponding to their weights
 			test_input = generateDirect(input_size);
-			cout << "Testing list " << test_input;
 
 			test_result = test(test_input, capacity);
 
@@ -42,14 +41,15 @@ void KnapsackTester::runAutomatedTests()
 			              << test_result.greedyResult.totalValue << ','
 			              << test_result.dynamicResult.solution_set << ','
 			              << test_result.greedyResult.solution_set << ','
+			              << test_input
 			              << endl;
 
-			 cout << test_result;
+			 cout << "Capacity = " << capacity << ", input size = " << input_size
+			      << ", type = direct" << endl << test_result;
 
 			 // Random test (hard)
 			 // Weights and values randomly assigned. Neither will exceed the bag's capacity
 			test_input = generateRandom(input_size, capacity);	
-			cout << "Testing list " << test_input;
 
 			test_result = test(test_input, capacity);
 
@@ -60,15 +60,16 @@ void KnapsackTester::runAutomatedTests()
 			              << test_result.greedyResult.totalValue << ','
 			              << test_result.dynamicResult.solution_set << ','
 			              << test_result.greedyResult.solution_set << ','
+			              << test_input
 			              << endl;
 
 			 //Show results of the random test on the screen
-			 cout << test_result;
+			 cout << "Capacity = " << capacity << ", input size = " << input_size
+			      << ", type = random" << endl << test_result;
 
 			 // Inverse test (easy)
 			 // Weights are inversely related to value
 			test_input = generateInverse(input_size);	
-			cout << "Testing list " << test_input;
 
 			test_result = test(test_input, capacity);
 
@@ -79,8 +80,10 @@ void KnapsackTester::runAutomatedTests()
 			              << test_result.greedyResult.totalValue << ','
 			              << test_result.dynamicResult.solution_set << ','
 			              << test_result.greedyResult.solution_set << ','
+			              << test_input
 			              << endl;
-
+			cout << "Capacity = " << capacity << ", input size = " << input_size
+			      << ", type = random" << endl << test_result;
 		}
 	}
 
@@ -130,7 +133,7 @@ vector<knapsackItem> KnapsackTester::generateRandom(int size, int max_val)
 		//add it to the result
 		result.push_back(tmp);
 	}
-	cout << "Random list generated: " << result << endl;
+
 	return result;
 }
 
@@ -182,11 +185,11 @@ ostream& operator << (ostream& out, const combinedTestResult& in)
 {
 	out << "Dynamic Solution: value = " << in.dynamicResult.totalValue
 	    << ", time = " << in.dynamicTime <<  endl;
-	out << "Uses items: " << in.dynamicResult.solution_set << endl << endl;
+//	out << "Uses items: " << in.dynamicResult.solution_set << endl << endl;
 
 	out << "greedy Solution: value = " << in.greedyResult.totalValue
 	    << ", time = " << in.greedyTime <<  endl;
-	out << "Uses items: " << in.greedyResult.solution_set << endl;
+//	out << "Uses items: " << in.greedyResult.solution_set << endl;
 	out << endl << endl;
 	return out;
 }

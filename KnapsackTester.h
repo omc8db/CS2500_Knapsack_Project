@@ -16,11 +16,9 @@
 
 using namespace std;
 
-const int MAX_CAPACITY = 65536; // Test up to 2^16
+const int MAX_CAPACITY = 8192; // Test up to 2^16
 const int MIN_CAPACITY = 4;
-const int MAX_INPUT_SIZE = 100;
-const int TEST_INPUT_SIZE_STEP = 10;
-const int MAX_RANDOM_VAL = 300;
+
 
 struct combinedTestResult
 {
