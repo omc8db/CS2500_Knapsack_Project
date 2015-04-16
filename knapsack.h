@@ -28,4 +28,10 @@ knapsackResult greedyKnapsackSolve(const vector<knapsackItem>& input, int capcit
 
 knapsackResult dynamicKnapsackSolve(const vector<knapsackItem>& input, int capacity);
 
+
+bool operator>(knapsackItem lhs, knapsackItem rhs);
+
+bool operator<(knapsackItem lhs, knapsackItem rhs);
+
+
 #endif

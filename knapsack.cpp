@@ -1,8 +1,23 @@
 #include "knapsack.h"
 
-knapsackResult greedyKnapsackSolve(const vector<knapsackItem>& input, int capcity)
+knapsackResult greedyKnapsackSolve(const vector<knapsackItem>& input, int capacity)
 {
 	knapsackResult result;
+	
+	int numValues = input.size();
+	//create a copy of the input
+	vector<knapsackItem> q = input;
+	//sorting the input copy in place by value/weight
+	HeapSort<vector<knapsackItem> > heapsorter;
+	heapsorter.heapsort(q, q.size());
+	
+	
+	
+
+	int k = capacity;
+	for(int i = 0; i < numValues; i++){
+		
+	}
 	
 	return result;
 }
@@ -81,3 +96,25 @@ knapsackResult dynamicKnapsackSolve(const vector<knapsackItem>& input, int capac
 	delete[] table;
 	return result;
 }
+
+
+bool operator>(knapsackItem lhs, knapsackItem rhs)
+{
+	if(static_cast<float> (lhs.value)/lhs.weight > static_cast<float> (rhs.value)/rhs.weight){
+		return true;
+	}
+	else{
+		return false;
+	}
+}
+
+bool operator<(knapsackItem lhs, knapsackItem rhs)
+{
+	if(static_cast<float> (lhs.value)/lhs.weight < static_cast<float> (rhs.value)/rhs.weight){
+		return true;
+	}
+	else{
+		return false;
+	}
+}
+
