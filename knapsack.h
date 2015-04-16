@@ -17,4 +17,6 @@ knapsackResult greedyKnapsackSolve(const vector<knapsackItem>& input, int capaci
 
 knapsackResult dynamicKnapsackSolve(const vector<knapsackItem>& input, int capacity);
 
+void outputTable(int** table, int items, int capacity);
+
 #endif

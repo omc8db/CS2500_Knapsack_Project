@@ -37,6 +37,7 @@ int main()
 		{
 			case 1: //Automated Test
 				cout << "Starting tests. Results will be output to console and results.csv" << endl;
+				tester.runAutomatedTests();
 
 				break;
 

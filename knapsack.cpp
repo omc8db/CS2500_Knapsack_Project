@@ -26,18 +26,8 @@ knapsackResult greedyKnapsackSolve(const vector<knapsackItem>& input, int capaci
 		q[i] = input[i];
 	}
 
-
-	cout << "Unsorted: ";
-	outputListOfKnapsackItems(q, input.size());
-	cout << endl;
-
 	//Greedy Sort criteria
 	heapSort(q, input.size());
-
-	cout << "Sorted: ";
-	outputListOfKnapsackItems(q, input.size());
-	cout << endl;
-	
 
 	//Calculate results
 	for(int i = 0; i < input.size(); i++)
@@ -59,13 +49,26 @@ knapsackResult greedyKnapsackSolve(const vector<knapsackItem>& input, int capaci
 	delete[] q;
 	return result;
 
-	return result;
+}
+
+void outputTable(int** table, int items, int capacity)
+{
+	for(int i = 0; i <= items; i++)
+	{
+		for(int j = 0; j <= capacity; j++)
+		{
+			cout << table[i][j];
+		}
+		cout << endl;
+	}
+	cout << endl;
 }
 
 knapsackResult dynamicKnapsackSolve(const vector<knapsackItem>& input, int capacity)
 {
 	knapsackResult result;
 	
+	cout << "Dynamic:: Allocating table" << endl;
 	//Allocate table
 	int **table = new int*[input.size()+1]; // add an extra row for 0s
 	for(int i = 0; i < input.size()+1; i++)
@@ -83,12 +86,14 @@ knapsackResult dynamicKnapsackSolve(const vector<knapsackItem>& input, int capac
 		table[0][j] = 0;
 	}
 
+	cout << "Dynamic:: Table created" << endl;
 
 	//Fill out the table
 	for(int i = 1; i <= input.size(); i++)
 	{
 		for(int j = 1; j <= capacity; j++)
 		{
+//			outputTable(table, input.size(), capacity);
 			if(j < input[i-1].weight)
 			{
 				table[i][j] = table[i-1][j];

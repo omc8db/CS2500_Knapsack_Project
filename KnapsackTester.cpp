@@ -25,12 +25,14 @@ void KnapsackTester::runAutomatedTests()
 	{
 		cout << "Testing capacity " << capacity << "\n================" << endl;
 
-		for(input_size = 1; input_size < MAX_INPUT_SIZE; input_size+= TEST_INPUT_SIZE_STEP)
+		for(input_size = 3; input_size < MAX_INPUT_SIZE; input_size+= TEST_INPUT_SIZE_STEP)
 		{
 
 			// Direct test (easy)
 			// Inputs have values corresponding to their weights
 			test_input = generateDirect(input_size);
+			cout << "Testing list " << test_input;
+
 			test_result = test(test_input, capacity);
 
 			m_output_file << capacity << ',' << input_size << ",direct," 
@@ -42,9 +44,13 @@ void KnapsackTester::runAutomatedTests()
 			              << test_result.greedyResult.solution_set << ','
 			              << endl;
 
+			 cout << test_result;
+
 			 // Random test (hard)
-			 // Weights and values randomly assigned
-			test_input = generateRandom(input_size);			              
+			 // Weights and values randomly assigned. Neither will exceed the bag's capacity
+			test_input = generateRandom(input_size, capacity);	
+			cout << "Testing list " << test_input;
+
 			test_result = test(test_input, capacity);
 
 			m_output_file << capacity << ',' << input_size << ",random," 
@@ -56,9 +62,14 @@ void KnapsackTester::runAutomatedTests()
 			              << test_result.greedyResult.solution_set << ','
 			              << endl;
 
+			 //Show results of the random test on the screen
+			 cout << test_result;
+
 			 // Inverse test (easy)
 			 // Weights are inversely related to value
-			test_input = generateInverse(input_size);			              
+			test_input = generateInverse(input_size);	
+			cout << "Testing list " << test_input;
+
 			test_result = test(test_input, capacity);
 
 			m_output_file << capacity << ',' << input_size << ",inverse," 
@@ -89,17 +100,21 @@ combinedTestResult KnapsackTester::test(const vector<knapsackItem>& input, int c
 
 	result.greedyTime = time_stop - time_start;
 
+	cout << "Greedy test finished" << endl;
+
 	time_start = clock();
 	result.dynamicResult = dynamicKnapsackSolve(input, capacity);
 	time_stop = clock();
 
 	result.dynamicTime = time_stop - time_start;
 
+	cout << "Dynamic Test Finished " << endl;
 	return result;
 }
 
-vector<knapsackItem> KnapsackTester::generateRandom(int size)
+vector<knapsackItem> KnapsackTester::generateRandom(int size, int max_val)
 {
+	cout << "Generating Random list" << endl;
 	vector<knapsackItem> result;
 	//Allocate enough space for the vector
 	result.reserve(size);
@@ -109,13 +124,13 @@ vector<knapsackItem> KnapsackTester::generateRandom(int size)
 	for(int i = 0; i < size; i++)
 	{
 		//Generate a knapsack object
-		tmp.value = rand()%MAX_RANDOM_VAL;
-		tmp.weight = rand()%MAX_RANDOM_VAL;
+		tmp.value = rand()%max_val + 1;
+		tmp.weight = rand()%max_val + 1;
 
 		//add it to the result
 		result.push_back(tmp);
 	}
-
+	cout << "Random list generated: " << result << endl;
 	return result;
 }
 
@@ -130,8 +145,8 @@ vector<knapsackItem> KnapsackTester::generateDirect(int size)
 	for(int i = 0; i < size; i++)
 	{
 		//Generate a knapsack object
-		tmp.value = i;
-		tmp.weight = i;
+		tmp.value = i+1;
+		tmp.weight = i+1;
 
 		//add it to the result
 		result.push_back(tmp);
@@ -151,8 +166,8 @@ vector<knapsackItem> KnapsackTester::generateInverse(int size)
 	for(int i = 0; i < size; i++)
 	{
 		//Generate a knapsack object
-		tmp.value = size;
-		tmp.weight = size - i;
+		tmp.value = i+1;
+		tmp.weight = (size - i) + 1;
 
 		//add it to the result
 		result.push_back(tmp);

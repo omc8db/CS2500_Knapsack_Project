@@ -17,9 +17,9 @@
 using namespace std;
 
 const int MAX_CAPACITY = 65536; // Test up to 2^16
-const int MIN_CAPACITY = 2;
-const int MAX_INPUT_SIZE = 100000;
-const int TEST_INPUT_SIZE_STEP = 100;
+const int MIN_CAPACITY = 4;
+const int MAX_INPUT_SIZE = 100;
+const int TEST_INPUT_SIZE_STEP = 10;
 const int MAX_RANDOM_VAL = 300;
 
 struct combinedTestResult
@@ -56,7 +56,7 @@ public:
 	//          knapsackResult for greedy approach
 	combinedTestResult test(const vector<knapsackItem>& input, int capacity);
 private:
-	vector<knapsackItem> generateRandom(int size);
+	vector<knapsackItem> generateRandom(int size, int max_val);
 	vector<knapsackItem> generateDirect(int size);
 	vector<knapsackItem> generateInverse(int size);
 	
