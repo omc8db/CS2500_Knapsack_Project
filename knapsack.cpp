@@ -45,7 +45,7 @@ knapsackResult greedyKnapsackSolve(const vector<knapsackItem>& input, int capaci
 		if(current_weight + q[i].weight <= capacity)
 		{
 			result.solution_set.push_back(q[i]);
-			current_weight = current_weight - q[i].weight;
+			current_weight = current_weight + q[i].weight;
 		}
 
 	}
