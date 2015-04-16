@@ -11,7 +11,7 @@
 #ifndef HEAPSORT_H
 #define HEAPSORT_H
 #include <assert.h>
-#include "knapsack_types.cpp"
+#include "knapsack_types.h"
 
 
 void heapSort(knapsackItem* array, int size);
